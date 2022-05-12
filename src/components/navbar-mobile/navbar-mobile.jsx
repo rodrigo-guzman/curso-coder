@@ -34,7 +34,7 @@ function NavBarMobile({nombre, logo}){
               ECOMMERCE
             </Typography> 
 
-            <Button color='secondary' sx={{justifyContent: 'right', alignContent: 'right', paddingLeft: '4em'}}>
+            <Button color='secondary' sx={{justifyContent: 'right', alignContent: 'right', paddingLeft: '4rem'}}>
                 <CartWidget qtyItems={4}/>
             </Button>        
           </Box>

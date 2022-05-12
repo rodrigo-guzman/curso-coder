@@ -50,7 +50,7 @@ function navbardesktop({nombre, logo}){
                 <CartWidget qtyItems={4}/>
           </Button> 
           
-          <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex', paddingLeft: '3em'} }}>
+          <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex', paddingLeft: '3rem'} }}>
             <Button
               variant='contained'
               
