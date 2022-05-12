@@ -8,7 +8,7 @@ function App() {
 
   return (
       <><CssBaseline>
-      <NavBar />
+      <NavBar nombre = {"Ecommerce"}/>
     </CssBaseline>
     <ItemListContainer mensaje = {"Catálogo"}/></>
   );

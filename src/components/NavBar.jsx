@@ -1,101 +1,20 @@
 import React from 'react'
-
-import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Container, Toolbar } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
 import logo from '../logo.svg';
-import logoShop from '../logo_shop.png';
+import Navbardesktop from './navbar-desktop/navbar-desktop'
+import NavBarMobile from './navbar-mobile/navbar-mobile'
 
-import CartWidget from './cartwidget';
-
-export const NavBar = () => {
+export const NavBar = ({nombre}) => {
   return (
-    <AppBar position='sticky' elevation={0} background='#0d47a1'>
+    <AppBar position='static' elevation={0} background='#0d47a1'>
       <Container maxWidth='xl'>
         <Toolbar>
-          
-          {/* Desktop  */}
-           <IconButton sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
-            <img width={30} height={30} src={logoShop} alt="Ecommerce" />-
-          </IconButton>
-
-          <Typography
-            variant="h4"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              textDecoration: 'none',
-              color: '#ffffff'
-            }}
-          >
-              Ecommerce
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, justifyContent: 'center', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Vehículos
-            </Button>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Electrónica
-            </Button>
-            <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Libros
-            </Button>
-          </Box>
-
-          <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
+          {/* DESKTOP */}
+          <Navbardesktop nombre = {nombre} logo = {logo}/>
          
-            <CartWidget />
-            <Button
-              variant='primary'
-              sx={{ display: 'flex' }}
-              startIcon={<AccountCircleIcon />}
-            >
-            Loguin
-            </Button>
-          </Box>
-          {/* END DESKTOP */}
-
-          {/* MOBILE */}
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            color="inherit"
-            sx={{ display: { xs: 'flex', md: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <IconButton sx={{ p: 0 }}>
-              <img width={60} height={60} src={logo} alt="Ecommerce" />
-            </IconButton>
-
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                color: '#ffffff',
-                textDecoration: 'none',
-              }}
-            >
-              ECOMMERCE
-            </Typography>         
-          </Box>
-          {/* END MOBILE */}
+         {/* MOBILE */}
+          <NavBarMobile nombre = {nombre} logo = {logo}/>
         </Toolbar>
       </Container>
     </AppBar>

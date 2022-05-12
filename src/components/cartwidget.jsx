@@ -1,14 +1,26 @@
 import React from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from '@mui/material';
+import { Badge } from '@mui/material';
+import { Box } from "@mui/system";
+import { grey } from "@mui/material/colors";
 
-
-function CartWidget(){
+function CartWidget({qtyItems}){
+    const cartColor = grey;
     return <>
-    <Container maxWidth='xl' sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'none', md: 'flex' } }}>
-    <ShoppingCartIcon />
-    </Container>
+    <Badge badgeContent={qtyItems} color="success">
+        {/* ShoppingCart for responsive screens */}
+        <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+            <ShoppingCartIcon fontSize="medium" sx={{ color: cartColor }} />
+        </Box>
+
+        {/* ShoppingCart for desktop mode */}
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <ShoppingCartIcon fontSize="large" sx={{ color: cartColor }} />
+        </Box>
+    </Badge>
+
     </> ;
 }
 
 export default CartWidget;
+
