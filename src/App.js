@@ -7,11 +7,9 @@ import './App.css';
 function App() {
 
   return (
-    <ThemeProvider theme={darkTheme}>
       <CssBaseline>
         <NavBar />
       </CssBaseline>
-    </ThemeProvider>
   );
 }
 

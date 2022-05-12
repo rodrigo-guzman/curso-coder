@@ -2,6 +2,7 @@ import React from 'react'
 
 import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import logo from '../logo.svg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -13,6 +14,10 @@ export const NavBar = () => {
         <Toolbar>
           
           {/* Desktop  */}
+           <IconButton sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
+            <img width={60} height={60} src={logo} alt="Ecommerce" />
+          </IconButton>
+
           <Typography
             variant="h4"
             noWrap
@@ -47,6 +52,13 @@ export const NavBar = () => {
 
           <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
           {<ShoppingCartIcon />}
+            <Button
+              variant='primary'
+              sx={{ display: 'flex' }}
+              startIcon={<AccountCircleIcon />}
+            >
+            Loguin
+            </Button>
           </Box>
           {/* END DESKTOP */}
 
