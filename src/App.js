@@ -1,12 +1,17 @@
-import React from 'react';
-import './App.css';
-import NavBar from './components/NavBar.js';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { NavBar } from './components/NavBar';
+import { darkTheme } from './themes/dark-theme';
 
-const App = () => {
+import './App.css';
+
+function App() {
+
   return (
-    <><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-    <NavBar />
-    </>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline>
+        <NavBar />
+      </CssBaseline>
+    </ThemeProvider>
   );
 }
 
