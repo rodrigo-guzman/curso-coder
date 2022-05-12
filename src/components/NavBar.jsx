@@ -5,7 +5,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import logo from '../logo.svg';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import logoShop from '../logo_shop.png';
+
+import CartWidget from './cartwidget';
 
 export const NavBar = () => {
   return (
@@ -15,7 +17,7 @@ export const NavBar = () => {
           
           {/* Desktop  */}
            <IconButton sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
-            <img width={60} height={60} src={logo} alt="Ecommerce" />
+            <img width={30} height={30} src={logoShop} alt="Ecommerce" />-
           </IconButton>
 
           <Typography
@@ -51,7 +53,8 @@ export const NavBar = () => {
           </Box>
 
           <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
-          {<ShoppingCartIcon />}
+         
+            <CartWidget />
             <Button
               variant='primary'
               sx={{ display: 'flex' }}

@@ -1,15 +1,16 @@
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import { NavBar } from './components/NavBar';
-import { darkTheme } from './themes/dark-theme';
+import ItemListContainer from './components/ItemListContainer'
 
 import './App.css';
 
 function App() {
 
   return (
-      <CssBaseline>
-        <NavBar />
-      </CssBaseline>
+      <><CssBaseline>
+      <NavBar />
+    </CssBaseline>
+    <ItemListContainer mensaje = {"Catálogo"}/></>
   );
 }
 
