@@ -1,3 +1,4 @@
+//@ts-check
 import React from 'react'
 import { Box, Button,  IconButton, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

@@ -1,6 +1,6 @@
+/*//@ts-check      ver xq no anda cuando lo pongo*/ 
 import React from 'react'
 import { AppBar, Container, Toolbar } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import logo from '../logo.svg';
 import Navbardesktop from './navbar-desktop/navbar-desktop'
 import NavBarMobile from './navbar-mobile/navbar-mobile'

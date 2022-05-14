@@ -10,7 +10,7 @@ function App() {
       <><CssBaseline>
       <NavBar nombre = {"Ecommerce"}/>
     </CssBaseline>
-    <ItemListContainer mensaje = {"Catálogo"}/></>
+    <ItemListContainer mensaje = {"CATÁLOGO"} /></>
   );
 }
 

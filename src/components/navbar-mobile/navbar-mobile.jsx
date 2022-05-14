@@ -1,3 +1,4 @@
+//@ts-check
 import React from 'react'
 import { Box, Button,  IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,7 +17,7 @@ function NavBarMobile({nombre, logo}){
         <MenuIcon />
       </IconButton>
           
-      <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, justifyContent: 'center' }}>
         <IconButton sx={{ p: 0 }}>
           <img width={60} height={60} src={logo} alt="Ecommerce" />
         </IconButton>
