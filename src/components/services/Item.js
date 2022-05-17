@@ -8,14 +8,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import { red } from '@mui/material/colors';
+import { Container } from "@mui/material";
 
 
-function Item({id, title, price, pictureUrl}){
+function Item({item}){
     const color = red[500];
-    const [sumar, setSumar] = useState();
-
+    //const [sumar, setSumar] = useState();
+    const {id, title, price, pictureUrl} = item;
 
     return <>
+    <Container sx= {{paddingTop: '1em'}}>
     <Card sx={{ minWidth: 275, backgroundColor: "whitesmoke" }}>
       <input type="hidden" value={id}></input>
       <CardContent>
@@ -44,13 +46,12 @@ function Item({id, title, price, pictureUrl}){
       <Button
             variant='contained'
             sx={{ display: 'flex', backgroundColor: color}}  
-            
         >
             {'Agregar al Carrito'}
         </Button>
       </CardActions>
     </Card>
-
+    </Container>
     </> ;
 }
 

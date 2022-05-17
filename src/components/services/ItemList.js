@@ -9,27 +9,24 @@ function ItemList({products, mensaje}) {
     <>
     <Box sx={{ flexGrow: 1, maxWidth: 652, display: { xs: 'none', md: 'flex' } }}>
         <Grid container spacing={3}>
-            {products && products.map((product) => 
-                <Grid item xs={12} md={6}>
-                    <div key={product.id} >
-                        <Item id = {product.id} title = {product.title} price = {product.price} pictureUrl = {product.pictureUrl}/>
-                    </div>
-                </Grid>
-        )}
-    </Grid>
+            
+            {products && products.map((item, i) => 
+                <Grid item xs={12} md={6} key={i}>
+                        <Item key={item.id} item = {item}/>
+                    </Grid>
+            )}
+            
+        </Grid>
     </Box>
 
-     <Box sx={{ flexGrow: 1, maxWidth: 352, minWidth: 200, maxHeight: 400, display: { xs: 'flex', md: 'none' } }}>
-
+     <Box sx={{ flexGrow: 1, maxWidth: 352, minWidth: 200, maxHeight: 400, display: { xs: 'flex', md: 'none' }}}>
         <Grid container spacing={3}>
-            {products && products.map((product) => 
-                <Grid item xs={12} md={6}>
-                    <div key={product.id} >
-                        <Item id = {product.id} title = {product.title} price = {product.price} pictureUrl = {product.pictureUrl}/>
-                    </div>
-                </Grid>
-        )}
-    </Grid>
+            <Grid item xs={12} md={6}>
+                {products && products.map((item) => 
+                        <Item key={item.id} item = {item}/>
+                )}
+            </Grid>
+        </Grid>
     </Box>
     </>
   )

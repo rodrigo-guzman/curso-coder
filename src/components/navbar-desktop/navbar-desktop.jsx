@@ -30,12 +30,12 @@ function navbardesktop({nombre, logo}){
         <Button
           sx={{ my: 2, color: 'white', display: 'block' }}
         >
-          Vehículos
+          Notebook
         </Button>
         <Button
           sx={{ my: 2, color: 'white', display: 'block' }}
         >
-          Electrónica
+          Televisores
         </Button>
         <Button
           sx={{ my: 2, color: 'white', display: 'block' }}
