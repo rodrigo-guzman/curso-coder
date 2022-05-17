@@ -23,7 +23,10 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         setLoading(true);
-        getItem();
+        setTimeout(() => {
+            getItem();
+        }, 2000);
+        
     }, [])
    
     return(<>
