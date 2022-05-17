@@ -55,7 +55,7 @@ function ItemCount({valorInicial, stock, onAdd}){
             sx={{ display: 'flex', backgroundColor: color}}  
             onClick={() => {onAdd(stock,sumar)}}          
         >
-            {'Agregar al Carrito'}
+            {'DETALLE'}
         </Button>
       </CardActions>
     </Card>

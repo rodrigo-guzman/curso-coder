@@ -1,5 +1,5 @@
 //@ts-check
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,14 +11,16 @@ import { red } from '@mui/material/colors';
 import { Container } from "@mui/material";
 
 
-function Item({item}){
+function ItemDetail({item}){
     const color = red[500];
-    //const [sumar, setSumar] = useState();
-    const {id, title, price, pictureUrl} = item;
+    const {id, title, price, pictures} = item;
+    const url = pictures.map(function(picture) {
+        return picture.url;
+    });
 
     return <>
     <Container sx= {{paddingTop: '1em'}}>
-    <Card sx={{ minWidth: 275, backgroundColor: "whitesmoke" }}>
+    <Card sx={{  backgroundColor: "whitesmoke" }}>
       <input type="hidden" value={id}></input>
       <CardContent>
         <Box >
@@ -26,16 +28,14 @@ function Item({item}){
             {title}
         </Typography>
         </Box>
-        
-        <CardMedia
-            component="img"
-            height="194"
-            width="4em"
-            image={pictureUrl}
-            alt="Paella dish"
-        />
       </CardContent>
-      
+      <Box sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex' }}}>
+      <CardMedia
+            component="img"
+            image={url[1]}
+            sx={{maxWidth: '30%', maxHeight: '30%'}}
+        />
+      </Box>
       <Box >
       <Typography sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex' }}}>
         Precio: ${price}
@@ -55,4 +55,4 @@ function Item({item}){
     </> ;
 }
 
-export default Item;
+export default ItemDetail;
