@@ -1,14 +1,16 @@
 //@ts-check
 import { useState, useEffect } from 'react';
 import ItemDetail from './ItemDetail';
-import LoadingComponent from './Loading'
+import LoadingComponent from './Loading';
+import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
+    let {idProduct} = useParams();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [item, setItem] = useState({});
     const getItem = () => {
-        fetch('https://api.mercadolibre.com/items/MLA1131792452')
+        fetch('https://api.mercadolibre.com/items/'+idProduct)
         .then((res) => {
             return res.json()
         })

@@ -1,36 +1,38 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Container,CircularProgress } from '@mui/material';
-import ItemList from "./services/ItemList";
 import Typography from '@mui/material/Typography';
-import productos from '../Products'
+import { useParams } from 'react-router-dom';
+import ItemList from './services/ItemList';
+
 
 export default function ItemListContainer({mensaje}){
+    let {categoryId} = useParams();
     const [loading, setLoading] = useState(false);
-    const [products, setProducts] = useState()
+    const [productList, setProducts] = useState()
     const [error, setError] = useState("");
 
-  
-    const promesa = new Promise((res,rej) => {
-        setTimeout(() => {
-            res(productos);
-        }, 2000);
-    });
-
     useEffect(()=>{
+        console.log('paso por el useEffect')
         setLoading(true);
-        promesa
-        .then(res => {
-            setLoading(false);
-            setProducts(res)
-        })
-        .catch(err => {
-            setError(err)
-            console.log(error);
-        })
-        .finally(() => setLoading(false))
+        if (categoryId){
+            fetch('https://api.mercadolibre.com/sites/MLA/search?category=' + categoryId)
+            .then((res) => {
+                return res.json()
+            })
+            .then((res) => {
+                setLoading(false);
+                setProducts(res.results);
+            })
+            .catch((err) => {
+                console.log('err', error);
+                setError(err);
+            })
+        }
     },[])
- 
+
+    console.log('productList', {productList})
+
     return (
     <>
         {
@@ -54,7 +56,9 @@ export default function ItemListContainer({mensaje}){
 
             <Box>
                 <Container maxWidth='xl' sx={{position: "relative",justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex'}}}>
-                    <ItemList products= {products} mensaje = {mensaje}/>
+                    {productList &&
+                        <ItemList products= {productList} mensaje = {mensaje}/>
+                    }
                 </Container>
             </Box>
         </>
