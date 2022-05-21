@@ -9,13 +9,13 @@ import {NavLink} from 'react-router-dom';
 function navbardesktop({nombre, logo}){
     const color = red[500];
     return <>
-      <NavLink to={"/"} style={{textDecoration: 'none'}}>
+      {/*<NavLink to={"/"} style={{textDecoration: 'none'}}>*/}
         <IconButton sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
           <img width={50} height={50} src={logo} alt="Ecommerce" />
         </IconButton>
-      </NavLink>
+      {/*</NavLink>*/}
 
-      <NavLink to={"/"} style={{textDecoration: 'none'}}>
+      {/*<NavLink to={"/"} style={{textDecoration: 'none'}}>*/}
         <Typography
           variant="h4"
           noWrap
@@ -29,7 +29,7 @@ function navbardesktop({nombre, logo}){
         >
           {nombre}
         </Typography>
-      </NavLink>
+      {/*</NavLink>*/}
 
       <Box sx={{ flexGrow: 1, justifyContent: 'center', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
         <Button

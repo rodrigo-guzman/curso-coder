@@ -8,15 +8,13 @@ import ItemList from './services/ItemList';
 
 export default function ItemListContainer({mensaje}){
     let {categoryId} = useParams();
-    const [loading, setLoading] = useState(false);
-    const [productList, setProducts] = useState()
+    const [loading, setLoading] = useState(true);
+    const [productList, setProducts] = useState({});
     const [error, setError] = useState("");
 
     useEffect(()=>{
-        console.log('paso por el useEffect')
-        setLoading(true);
         if (categoryId){
-            fetch('https://api.mercadolibre.com/sites/MLA/search?category=' + categoryId)
+            fetch('https://api.mercadolibre.com/sites/MLA/search?q=' + categoryId)
             .then((res) => {
                 return res.json()
             })
@@ -29,9 +27,7 @@ export default function ItemListContainer({mensaje}){
                 setError(err);
             })
         }
-    },[])
-
-    console.log('productList', {productList})
+    },[categoryId, error]);
 
     return (
     <>
