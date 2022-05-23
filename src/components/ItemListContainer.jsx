@@ -8,11 +8,12 @@ import ItemList from './services/ItemList';
 
 export default function ItemListContainer({mensaje}){
     let {categoryId} = useParams(0);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [productList, setProducts] = useState({});
     const [error, setError] = useState("");
 
     useEffect(()=>{
+        setLoading(true);
         setTimeout(() => {
             if (categoryId){
                 fetch('https://api.mercadolibre.com/sites/MLA/search?q=' + categoryId)
