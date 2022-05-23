@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container,CircularProgress } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
-import ItemList from './services/ItemList';
+import ItemList from './ItemList';
 
 
 export default function ItemListContainer({mensaje}){
