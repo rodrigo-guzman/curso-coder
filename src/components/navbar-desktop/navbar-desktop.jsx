@@ -1,10 +1,11 @@
 //@ts-check
 import React from 'react'
-import { Box, Button,  Container,  IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CartWidget from '../cartwidget';
 import { red } from '@mui/material/colors';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+//import {NavLink} from 'react-router-dom';
 
 function navbardesktop({nombre, logo}){
     const color = red[500];
@@ -32,21 +33,28 @@ function navbardesktop({nombre, logo}){
       {/*</NavLink>*/}
 
       <Box sx={{ flexGrow: 1, justifyContent: 'center', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
-        <Button
-          sx={{ my: 2, color: 'white', display: 'block' }}
-        >
-          Notebook
-        </Button>
+        <NavLink to={`/category/notebooks`} style={{textDecoration: 'none'}}>
+          <Button
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+            Notebook
+          </Button>
+        </NavLink>
+        <NavLink to={`/category/televisores`} style={{textDecoration: 'none'}}>
           <Button
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
             Televisores
           </Button>
-        <Button
-          sx={{ my: 2, color: 'white', display: 'block' }}
-        >
-          Libros
-        </Button>
+        </NavLink>
+
+        <NavLink to={`/category/libros`} style={{textDecoration: 'none'}}>
+          <Button
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+            Libros
+          </Button>
+        </NavLink>
       </Box>
       
       <Button color='secondary' sx={{display: { xs: 'none', md: 'flex' } }}>

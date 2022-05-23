@@ -1,22 +1,27 @@
 //@ts-check
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
-import { red } from '@mui/material/colors';
 import { Container } from "@mui/material";
-
+import ItemCount from './ItemCount';
 
 function ItemDetail({item}){
-    const color = red[500];
+    const [count, setCount] = useState(0);
     const {id, title, price, pictures} = item;
     const url = pictures.map(function(picture) {
         return picture.url;
     });
+
+    const onAdd = (add) => {
+      console.log('sumar', add);
+      setCount(add);
+      return alert(`Se han agregado ${add} elementos al carrito`);
+    }
+
 
     return <>
     <Container sx= {{paddingTop: '1em'}}>
@@ -43,12 +48,7 @@ function ItemDetail({item}){
       </Box>
       
       <CardActions sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex' } }}>
-      <Button
-            variant='contained'
-            sx={{ display: 'flex', backgroundColor: color}}  
-        >
-            {'Detalle'}
-        </Button>
+      {!count && <ItemCount valorInicial={1} stock={5} onAdd={onAdd} />}
       </CardActions>
     </Card>
     </Container>
