@@ -5,9 +5,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CartWidget from '../cartwidget';
 import { red } from '@mui/material/colors';
 import { NavLink } from 'react-router-dom';
-//import {NavLink} from 'react-router-dom';
 
-function navbardesktop({nombre, logo}){
+function navbardesktop({nombre, logo, quantity}){
     const color = red[500];
     return <>
       {/*<NavLink to={"/"} style={{textDecoration: 'none'}}>*/}
@@ -58,7 +57,7 @@ function navbardesktop({nombre, logo}){
       </Box>
       
       <Button color='secondary' sx={{display: { xs: 'none', md: 'flex' } }}>
-            <CartWidget qtyItems={4}/>
+            <CartWidget qtyItems={quantity}/>
       </Button> 
       
       <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex', paddingLeft: '3rem'} }}>

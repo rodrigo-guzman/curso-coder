@@ -1,22 +1,25 @@
 //@ts-check
-import React, { useState } from "react";
+import {useState, useContext} from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container, Grid } from "@mui/material";
 import { red } from '@mui/material/colors';
 import { Box } from "@mui/system";
+import { contextCart } from '../contexts/ContextCart';
 
 
-function ItemCount({valorInicial, stock, onAdd}){
+function ItemCount({valorInicial, stock, item}){
+    const {addToCart} = useContext(contextCart);
     const color = red[500];
-    const [sumar, setSumar] = useState(valorInicial);
+    const [quantity, setQuantity] = useState(valorInicial);
+    const {id, title, price} = item;
 
     const agregar = ()=>{
-        (sumar < stock  && setSumar(sumar+1));
+        (quantity < stock  && setQuantity(quantity+1));
     };
 
     const restar = ()=>{
-        sumar > 1  && setSumar(sumar-1);
+      quantity > 1  && setQuantity(quantity-1);
     };
 
     return <>
@@ -28,7 +31,7 @@ function ItemCount({valorInicial, stock, onAdd}){
               <Button variant="text" onClick={() => {agregar()}}>+</Button>
               
               <Typography variant="button" display="block" gutterBottom sx={{paddingLeft: '2em', paddingRight: '2em'}}>
-                {sumar !== '' ? sumar : '1'}
+                {quantity !== '' ? quantity : '1'}
               </Typography>
               
               <Button variant="text" onClick={() => {restar()}}>-</Button>
@@ -38,12 +41,13 @@ function ItemCount({valorInicial, stock, onAdd}){
           <Grid item xs={12} md={12}>
           <Container sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex'} }}>
           <Button
-                  disabled={ sumar === 0 }
+                  disabled={ quantity === 0 }
                   variant='contained'
                   sx={{ display: 'flex', backgroundColor: color}}  
                   size='small'
-                  onClick={ (e) => onAdd(sumar) }
-                >
+                  //onClick={ () => onAdd(sumar) }
+                  onClick= {() => addToCart({id: {id}, title: {title}, price: {price}, quantity: {quantity}})}
+          >
                   Agregar al carrito
           </Button>
           </Container>
