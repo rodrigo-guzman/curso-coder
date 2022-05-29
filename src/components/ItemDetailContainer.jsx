@@ -35,6 +35,7 @@ const ItemDetailContainer = () => {
         })
         .catch((err) => {
             setError(err);
+            console.log('error', error);
         });
 
         /*setLoading(true);
