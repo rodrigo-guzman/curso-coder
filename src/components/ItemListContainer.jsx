@@ -4,17 +4,29 @@ import { Box, Container,CircularProgress } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
+import {collection, getDocs, getFirestore, query, where} from 'firebase/firestore';
 
 
 export default function ItemListContainer({mensaje}){
     let {categoryId} = useParams(0);
     const [loading, setLoading] = useState(false);
-    const [productList, setProducts] = useState({});
+    const [productList, setProductList] = useState({});
     const [error, setError] = useState("");
 
     useEffect(()=>{
         setLoading(true);
-        setTimeout(() => {
+        const db = getFirestore();
+        const misDocumentos = query(collection(db, 'products'), where('categoryName', '==', `${categoryId}`));    
+        getDocs(misDocumentos)
+        .then(({docs}) => {
+            setLoading(false);
+            setProductList(docs
+                .map(item => ({id: item.id, ...item.data() })))})
+        .catch(err => {
+            setError(err);
+            console.log('error al consultar productos', error)
+        });  
+        /*setTimeout(() => {
             if (categoryId){
                 fetch('https://api.mercadolibre.com/sites/MLA/search?q=' + categoryId)
                 .then((res) => {
@@ -32,9 +44,9 @@ export default function ItemListContainer({mensaje}){
             else{
                 setLoading(false);
             }
-        }, 1500);
+        }, 1500);*/
     },[categoryId, error]);
-
+    console.log('productList', productList)
     return (
     <>
         {

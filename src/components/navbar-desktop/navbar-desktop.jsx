@@ -6,7 +6,7 @@ import CartWidget from '../cartwidget';
 import { red } from '@mui/material/colors';
 import { NavLink } from 'react-router-dom';
 
-function navbardesktop({nombre, logo, quantity}){
+function navbardesktop({nombre, logo, amountCart}){
     const color = red[500];
     return <>
       {/*<NavLink to={"/"} style={{textDecoration: 'none'}}>*/}
@@ -32,14 +32,14 @@ function navbardesktop({nombre, logo, quantity}){
       {/*</NavLink>*/}
 
       <Box sx={{ flexGrow: 1, justifyContent: 'center', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
-        <NavLink to={`/category/notebooks`} style={{textDecoration: 'none'}}>
+        <NavLink to={`/category/Notebooks`} style={{textDecoration: 'none'}}>
           <Button
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
             Notebook
           </Button>
         </NavLink>
-        <NavLink to={`/category/televisores`} style={{textDecoration: 'none'}}>
+        <NavLink to={`/category/Televisores`} style={{textDecoration: 'none'}}>
           <Button
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
@@ -47,7 +47,7 @@ function navbardesktop({nombre, logo, quantity}){
           </Button>
         </NavLink>
 
-        <NavLink to={`/category/libros`} style={{textDecoration: 'none'}}>
+        <NavLink to={`/category/Libros`} style={{textDecoration: 'none'}}>
           <Button
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
@@ -56,9 +56,11 @@ function navbardesktop({nombre, logo, quantity}){
         </NavLink>
       </Box>
       
-      <Button color='secondary' sx={{display: { xs: 'none', md: 'flex' } }}>
-            <CartWidget qtyItems={quantity}/>
-      </Button> 
+      <NavLink to={`/cart`} style={{textDecoration: 'none'}}>
+        <Button color='secondary' sx={{display: { xs: 'none', md: 'flex' } }}>
+              <CartWidget qtyItems={amountCart}/>
+        </Button> 
+      </NavLink>
       
       <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex', paddingLeft: '3rem'} }}>
         <Button

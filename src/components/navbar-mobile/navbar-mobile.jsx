@@ -4,7 +4,7 @@ import { Box, Button,  IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CartWidget from '../cartwidget';
 
-function NavBarMobile({nombre, logo}){
+function NavBarMobile({nombre, logo, amountCart}){
     return <>
       <IconButton
         size="large"
@@ -36,7 +36,7 @@ function NavBarMobile({nombre, logo}){
         </Typography> 
 
         <Button color='secondary' sx={{justifyContent: 'right', alignContent: 'right', paddingLeft: '4rem'}}>
-            <CartWidget qtyItems={4}/>
+            <CartWidget qtyItems={amountCart}/>
         </Button>        
       </Box>
     </> ;

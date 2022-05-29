@@ -13,23 +13,7 @@ import { contextCart } from '../contexts/ContextCart';
 function ItemDetail({item}){
     const {cart} = useContext(contextCart);
     const [count, setCount] = useState(0);
-    const {id, title, price, pictures} = item;
-    const url = pictures.map(function(picture) {
-        return picture.url;
-    });
-
-    const onAdd = (add) => {
-      console.log('sumar', add);
-      setCount(add);
-
-      return alert(`Se han agregado ${add} elementos al carrito`);
-    }
-
-    useEffect(() => {
-      //console.log('cart', cart);
-    }, [cart])
-    
-
+    const {id, title, price, thumbnail} = item;
 
     return <>
     <Container sx= {{paddingTop: '1em'}}>
@@ -45,7 +29,7 @@ function ItemDetail({item}){
       <Box sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex' }}}>
       <CardMedia
             component="img"
-            image={url[1]}
+            image={thumbnail}
             sx={{maxWidth: '30%', maxHeight: '30%'}}
         />
       </Box>
