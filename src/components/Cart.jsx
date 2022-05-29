@@ -11,9 +11,10 @@ import Paper from '@mui/material/Paper';
 import { contextCart } from '../contexts/ContextCart';
 import {useContext} from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { grey } from "@mui/material/colors";
-import { Button } from '@mui/material';
+import {grey, red} from '@mui/material/colors';
+import { Button, Container, TextField } from '@mui/material';
 import AddAndReset from './AddAndReset';
+import {NavLink} from 'react-router-dom';
 
 const StyledTableHeader = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -46,10 +47,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   }));
 
 const Cart = () => {
-    const {cart, removeToCart, removeAllToCart} = useContext(contextCart);
+    const { cart, removeToCart, removeAllToCart, totalPrice } = useContext(contextCart);
+    const color = red[500];
 
     return (
-        <TableContainer component={Paper}>
+        <>
+        { Boolean(cart.length) ? 
+        (<TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
               <TableRow>
@@ -57,7 +61,7 @@ const Cart = () => {
                 <StyledTableHeader align="center"></StyledTableHeader>
                 <StyledTableHeader align="center"></StyledTableHeader>
                 <StyledTableCell align="center"></StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align="left">
                     <Button onClick={() => {removeAllToCart()}} title='Eliminar Todos' sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
                         <DeleteIcon fontSize="medium" sx={{ color: grey }} />                                              
                     </Button>
@@ -90,8 +94,33 @@ const Cart = () => {
                 </StyledTableRow>
               ))}
             </TableBody>    
+
+            <TableBody>
+            <StyledTableCell align="left"></StyledTableCell>
+            <StyledTableCell align="left"></StyledTableCell>
+            <StyledTableCell align="left"></StyledTableCell>
+            <StyledTableCell align="left"></StyledTableCell>
+            <StyledTableCell align="right" style={{fontWeight: 'bold'}}>Precio Total: ${totalPrice}</StyledTableCell>
+            </TableBody>    
+
           </Table>
-        </TableContainer>
+        </TableContainer>)
+        :
+        (
+            <Container sx={{padding: '4em', justifyContent: 'center', alignContent: 'center'}}>
+                <TextField value={'No existen elementos'} sx={{paddingBottom: '4em'}}></TextField>
+                <NavLink to= {`/`} style={{textDecoration: 'none'}}>
+                    <Button
+                        variant='contained'
+                        sx={{ display: 'flex', backgroundColor: color}}>
+                        Volver a Home
+                    </Button>
+                </NavLink>
+            
+            </Container>
+        )
+    }
+        </>
       );
 }
 

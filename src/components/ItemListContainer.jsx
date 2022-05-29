@@ -46,7 +46,7 @@ export default function ItemListContainer({mensaje}){
             }
         }, 1500);*/
     },[categoryId, error]);
-    console.log('productList', productList)
+
     return (
     <>
         {
@@ -75,7 +75,12 @@ export default function ItemListContainer({mensaje}){
                     }
                 </Container>
             </Box>
-        </>) : (<><h1 style={{display: 'flex', justifyContent: 'center'}}>HOME</h1></>)
+        </>) : (
+        <>
+            <h1 style={{display: 'flex', justifyContent: 'center'}}>HOME</h1>
+            <br></br>
+            <p style={{display: 'flex', justifyContent: 'center'}}>Elegí una categoría</p>
+        </>)
         )}
     </>
     )
