@@ -16,7 +16,14 @@ export default function ItemListContainer({mensaje}){
     useEffect(()=>{
         setLoading(true);
         const db = getFirestore();
-        const misDocumentos = query(collection(db, 'products'), where('categoryName', '==', `${categoryId}`));    
+        let misDocumentos = null;
+        if(categoryId){
+            misDocumentos = query(collection(db, 'products'), where('categoryName', '==', `${categoryId}`));  
+        }
+        else {
+            misDocumentos = query(collection(db, 'products'));
+        }
+            
         getDocs(misDocumentos)
         .then(({docs}) => {
             setLoading(false);
@@ -26,6 +33,7 @@ export default function ItemListContainer({mensaje}){
             setError(err);
             console.log('error al consultar productos', error)
         });  
+
         /*setTimeout(() => {
             if (categoryId){
                 fetch('https://api.mercadolibre.com/sites/MLA/search?q=' + categoryId)

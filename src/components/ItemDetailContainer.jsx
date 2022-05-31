@@ -37,11 +37,6 @@ const ItemDetailContainer = () => {
             setError(err);
             console.log('error', error);
         });
-
-        /*setLoading(true);
-        setTimeout(() => {
-            getItem();
-        }, 2000);*/
     }, [])
    
     return(<>

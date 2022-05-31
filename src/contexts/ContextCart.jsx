@@ -9,6 +9,7 @@ const [errorAdd, setErrorAdd] = useState(false);
 let amountCart = 0;
 let totalPrice = 0;
 
+
 //agrega un nuevo objeto al carro
 const addToCart = (newCart) => {
     cart.map(item => {
@@ -56,7 +57,16 @@ if (cart.length > 0){
 
 return(
     <>
-    <contextCart.Provider value={{cart, addToCart, amountCart, removeToCart, removeAllToCart, addOneToCart, errorAdd, totalPrice}}>
+    <contextCart.Provider value={{
+        cart, 
+        addToCart, 
+        amountCart, 
+        removeToCart, 
+        removeAllToCart, 
+        addOneToCart, 
+        errorAdd, 
+        totalPrice
+        }}>
         {children}
     </contextCart.Provider>
     </>

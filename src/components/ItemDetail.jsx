@@ -1,5 +1,4 @@
 //@ts-check
-import React, { useContext, useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,12 +7,9 @@ import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import { Container } from "@mui/material";
 import ItemCount from './ItemCount';
-import { contextCart } from '../contexts/ContextCart';
 
 function ItemDetail({item}){
-    const {cart} = useContext(contextCart);
-    const [count, setCount] = useState(0);
-    const {id, title, price, thumbnail} = item;
+    const {id, title, price, thumbnail, stock} = item;
 
     return <>
     <Container sx= {{paddingTop: '1em'}}>
@@ -40,7 +36,7 @@ function ItemDetail({item}){
       </Box>
       
       <CardActions sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex' } }}>
-      {!count && <ItemCount valorInicial={1} stock={5} item={item} />}
+      {<ItemCount valorInicial={1} stock={stock} item={item} />}
       </CardActions>
     </Card>
     </Container>
