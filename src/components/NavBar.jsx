@@ -6,17 +6,18 @@ import Navbardesktop from './navbar-desktop/navbar-desktop'
 import NavBarMobile from './navbar-mobile/navbar-mobile'
 import { contextCart } from '../contexts/ContextCart';
 
-export const NavBar = ({nombre}) => {
+export const NavBar = ({name}) => {
   const {amountCart} = useContext(contextCart);
+  const categories = ['Notebooks', 'Televisores', 'Libros'];
   return (
     <AppBar position='static' elevation={0} background='#0d47a1'>
       <Container maxWidth='xl'>
         <Toolbar>
           {/* DESKTOP */}
-          <Navbardesktop nombre = {nombre} logo = {logo} amountCart = {amountCart}/>
+          <Navbardesktop name = {name} logo = {logo} amountCart = {amountCart} categories = {categories}/>
          
          {/* MOBILE */}
-          <NavBarMobile nombre = {nombre} logo = {logo} amountCart = {amountCart}/>
+          <NavBarMobile name = {name} logo = {logo} amountCart = {amountCart} categories = {categories}/>
         </Toolbar>
       </Container>
     </AppBar>

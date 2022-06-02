@@ -1,10 +1,14 @@
 //@ts-check
-import React from 'react'
-import { Box, Button,  IconButton, Typography } from '@mui/material';
+import React, { useState } from 'react'
+import { Box, Button,  Divider,  Drawer,  IconButton, List, ListItem, ListItemButton, ListItemText, Skeleton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CartWidget from '../cartwidget';
+import { DarkMode, LightMode, Menu } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
-function NavBarMobile({nombre, logo, amountCart}){
+function NavBarMobile({name, logo, amountCart, categories}){
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
     return <>
       <IconButton
         size="large"
@@ -13,15 +17,58 @@ function NavBarMobile({nombre, logo, amountCart}){
         aria-haspopup="true"
         color="inherit"
         sx={{ display: { xs: 'flex', md: 'none' } }}
+        title='icononono'
+        onClick={ () => setIsDrawerOpen(!isDrawerOpen) }
       >
-        <MenuIcon />
+        <Menu />
       </IconButton>
-          
-      <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, justifyContent: 'center' }}>
-        <IconButton sx={{ p: 0 }}>
-          <img width={60} height={60} src={logo} alt="Ecommerce" />
-        </IconButton>
 
+      <Drawer
+              open={ isDrawerOpen }
+              onClose={ () => setIsDrawerOpen(false) }
+            >
+              <List>
+                {
+                  categories.length ?
+                  categories.map((label) => (
+                    <Link
+                      to={`category/${label}`}
+                      key={label}
+                      className='nav-link'
+                      onClick={ () => setIsDrawerOpen(false) }
+                      style={{textDecoration: 'none'}}
+                    >
+                      <ListItem>
+                        <ListItemButton sx={{ paddingX: '50px' }}>
+                          <ListItemText sx={{ textAlign: 'center' }} primary={ label } />
+                        </ListItemButton>
+                      </ListItem>
+                    </Link>
+                  ))
+                  :
+                    <>
+                      <ListItem>
+                        <ListItemButton sx={{ paddingX: '50px' }}>
+                          <Skeleton width='115px' height='40px' />
+                        </ListItemButton>
+                      </ListItem>
+                      <ListItem>
+                        <ListItemButton sx={{ paddingX: '50px' }}>
+                          <Skeleton width='115px' height='40px' />
+                        </ListItemButton>
+                      </ListItem>
+                      <ListItem>
+                        <ListItemButton sx={{ paddingX: '50px' }}>
+                          <Skeleton width='115px' height='40px' />
+                        </ListItemButton>
+                      </ListItem>
+                    </>
+                }
+              </List>
+              <Divider />
+            </Drawer>
+  
+   
         <Typography
           variant="h5"
           noWrap
@@ -30,15 +77,20 @@ function NavBarMobile({nombre, logo, amountCart}){
           sx={{
             color: '#ffffff',
             textDecoration: 'none',
+            display: { xs: 'flex', md: 'none' }, 
+            flexGrow: 1, 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            paddingLeft:'0.5em'
           }}
         >
-          ECOMMERCE
-        </Typography> 
+          {name}
+        </Typography>        
 
-        <Button color='secondary' sx={{justifyContent: 'right', alignContent: 'right', paddingLeft: '4rem'}}>
+        
+      <Button color='secondary' sx={{display: { xs: 'flex', md: 'none' }}} >
             <CartWidget qtyItems={amountCart}/>
-        </Button>        
-      </Box>
+        </Button>
     </> ;
 }
 

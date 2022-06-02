@@ -2,20 +2,17 @@
 import React from 'react'
 import { Box, Button, IconButton, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CartWidget from '../cartwidget';
 import { red } from '@mui/material/colors';
+import CartWidget from '../cartwidget';
 import { NavLink } from 'react-router-dom';
 
-function navbardesktop({nombre, logo, amountCart}){
-    const color = red[500];
+function navbardesktop({name, logo, amountCart, categories}){
+      const color = red[500];
     return <>
-      {/*<NavLink to={"/"} style={{textDecoration: 'none'}}>*/}
         <IconButton sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
           <img width={50} height={50} src={logo} alt="Ecommerce" />
         </IconButton>
-      {/*</NavLink>*/}
 
-      {/*<NavLink to={"/"} style={{textDecoration: 'none'}}>*/}
         <Typography
           variant="h4"
           noWrap
@@ -27,33 +24,27 @@ function navbardesktop({nombre, logo, amountCart}){
             color: '#ffffff'
           }}
         >
-          {nombre}
+          {name}
         </Typography>
-      {/*</NavLink>*/}
 
-      <Box sx={{ flexGrow: 1, justifyContent: 'center', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' } }}>
-        <NavLink to={`/category/Notebooks`} style={{textDecoration: 'none'}}>
-          <Button
-            sx={{ my: 2, color: 'white', display: 'block' }}
-          >
-            Notebook
-          </Button>
-        </NavLink>
-        <NavLink to={`/category/Televisores`} style={{textDecoration: 'none'}}>
-          <Button
-            sx={{ my: 2, color: 'white', display: 'block' }}
-          >
-            Televisores
-          </Button>
-        </NavLink>
+        <IconButton sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
+          <img width={50} height={50} src={logo} alt="Ecommerce" />
+        </IconButton>
 
-        <NavLink to={`/category/Libros`} style={{textDecoration: 'none'}}>
+
+      <Box sx={{ flexGrow: 1, justifyContent: 'center', gap: 4, display: { xs: 'none', md: 'flex' }, paddingRight: '8em' }}>
+
+        {categories.length && categories.map(label => (
+          <NavLink to={`/category/${label}`} style={{textDecoration: 'none'}} key={label}>
           <Button
             sx={{ my: 2, color: 'white', display: 'block' }}
+            key={label}
           >
-            Libros
+            {label}
           </Button>
         </NavLink>
+        ))}
+
       </Box>
       
       <NavLink to={`/cart`} style={{textDecoration: 'none'}}>
@@ -65,13 +56,11 @@ function navbardesktop({nombre, logo, amountCart}){
       <Box sx={{ justifyContent: 'flex-end', alignContent: 'center', gap: 4, display: { xs: 'none', md: 'flex', paddingLeft: '3rem'} }}>
         <Button
           variant='contained'
-          
-          sx={{ display: 'flex', backgroundColor: color}}
+          sx={{ display: 'flex', backgroundColor: color, justifyContent: 'right'}}
           startIcon={<AccountCircleIcon />}
         >
-        Loguin
         </Button>
-      </Box>
+        </Box>
 
     </> ;
 }
