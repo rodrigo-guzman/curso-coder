@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useState, useEffect} from "react";
 
 
 export const contextCart = createContext();
@@ -9,6 +9,10 @@ const [errorAdd, setErrorAdd] = useState(false);
 let amountCart = 0;
 let totalPrice = 0;
 
+const setCartLocalStorage = (cartParam) => {
+    setCart(cartParam);
+    window.localStorage.setItem("cart", JSON.stringify(cartParam));
+}
 
 //agrega un nuevo objeto al carro
 const addToCart = (newCart) => {
@@ -18,16 +22,16 @@ const addToCart = (newCart) => {
             throw console.error('el objeto ya existe!');
         }
     })
-    setCart([...cart, newCart]);
+    setCartLocalStorage([...cart, newCart]);
 }   
 
 const removeToCart = (id) => {
     const removeCart = cart.filter(data => data.id !== id);
-    setCart(removeCart);
+    setCartLocalStorage(removeCart);
 }
 
 const removeAllToCart = () => {
-    setCart([]);
+    setCartLocalStorage([]);
 }
 
 const addOneToCart = (id, count) => {
@@ -38,22 +42,35 @@ const addOneToCart = (id, count) => {
         return item;
     });
 
-    setCart(updateCart);
+    setCartLocalStorage(updateCart);
 }
 
-if (cart.length > 0){
+if (cart && cart.length>0){
     const initialValue = 0;
     const sumWithInitial = cart.map((item) => item.quantity).reduce(
     (previousValue, currentValue) => previousValue + currentValue, initialValue);
     amountCart = sumWithInitial;
 }
 
-if (cart.length > 0){
+if (cart && cart.length>0){
     const initialValue = 0;
     const sumWithInitial = cart.map((item) => parseInt(item.price)).reduce(
     (previousValue, currentValue) => previousValue + currentValue, initialValue);
     totalPrice = sumWithInitial;
 }
+
+const checkLocalStorage = () => {
+    const getCart = window.localStorage.getItem("cart")
+
+    if(getCart){
+        setCart(JSON.parse(getCart));
+    }
+}
+
+useEffect(() => {
+    checkLocalStorage();
+}, [])
+
 
 return(
     <>

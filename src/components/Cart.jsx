@@ -48,7 +48,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   }));
 
 const Cart = () => {
-    const { cart, removeToCart, removeAllToCart, totalPrice } = useContext(contextCart);
+    const {  cart, removeToCart, removeAllToCart, totalPrice } = useContext(contextCart);
+
+    //console.log('window.localStorage.getItem("cart")', window.localStorage.getItem("cart"))
+
     const color = red[500];
 
     return (

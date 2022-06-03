@@ -4,7 +4,7 @@ import { Box, Button,  Divider,  Drawer,  IconButton, List, ListItem, ListItemBu
 import MenuIcon from '@mui/icons-material/Menu';
 import CartWidget from '../cartwidget';
 import { DarkMode, LightMode, Menu } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 function NavBarMobile({name, logo, amountCart, categories}){
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -87,10 +87,11 @@ function NavBarMobile({name, logo, amountCart, categories}){
           {name}
         </Typography>        
 
-        
-      <Button color='secondary' sx={{display: { xs: 'flex', md: 'none' }}} >
-            <CartWidget qtyItems={amountCart}/>
-        </Button>
+        <NavLink to={`/cart`} style={{textDecoration: 'none'}}>
+          <Button color='secondary' sx={{display: { xs: 'flex', md: 'none' }}} >
+              <CartWidget qtyItems={amountCart}/>
+          </Button>
+        </NavLink>
     </> ;
 }
 
