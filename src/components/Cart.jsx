@@ -12,7 +12,7 @@ import { contextCart } from '../contexts/ContextCart';
 import {useContext} from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {grey, red} from '@mui/material/colors';
-import { Button, Container, TextField } from '@mui/material';
+import { Button, Box, TextField } from '@mui/material';
 import AddAndReset from './AddAndReset';
 import {NavLink} from 'react-router-dom';
 import {Checkout} from './Checkout';
@@ -82,9 +82,7 @@ const Cart = () => {
                   <TableBody>
                     {cart.map((row) => (
                       <StyledTableRow key={row.title}>
-                        <StyledTableCell component="th" scope="row">
-                          {row.title}
-                        </StyledTableCell>
+                        <StyledTableCell component="th" scope="row">{row.title}</StyledTableCell>
                         <StyledTableCell align="left">${row.price}</StyledTableCell>
                         <StyledTableCell align="center">{row.quantity}</StyledTableCell>
                         <StyledTableCell align="left"><AddAndReset cartAddReset = { row } /></StyledTableCell>
@@ -104,30 +102,29 @@ const Cart = () => {
                   <StyledTableCell align="left"></StyledTableCell>
                   <StyledTableCell align="left"></StyledTableCell>
                   <StyledTableCell align="left"></StyledTableCell>
-                  
                   </TableBody>    
-
               </Table>
             </TableContainer>
             <Checkout/></>
           )
           :
-          (
-              <Container sx={{padding: '4em', justifyContent: 'center', alignContent: 'center'}}>
-                  <TextField value={'No existen elementos'} sx={{paddingBottom: '4em'}}></TextField>
+          (<>
+              <Box sx={{padding: '4em', flex:'display',justifyContent: 'center', textAlign: 'center'}}>
+                  <TextField value={'No existen elementos'}></TextField>
+                  
+              </Box>
+              <Box sx={{padding: '4em', flex:'display',justifyContent: 'center', textAlign: 'center'}}>
                   <NavLink to= {`/`} style={{textDecoration: 'none'}}>
                       <Button
                           variant='contained'
-                          sx={{ display: 'flex', backgroundColor: color}}>
+                          sx={{ backgroundColor: color}}>
                           Volver a Home
                       </Button>
                   </NavLink>
-              
-              </Container>
+              </Box>
+            </>
           )
         }
-        
-        
         </>
       );
 }

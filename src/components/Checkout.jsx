@@ -2,10 +2,11 @@ import { Button, Container, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { contextCart } from '../contexts/ContextCart';
 import { collection, getFirestore, addDoc, updateDoc, doc, getDoc } from "firebase/firestore";
+import { Redirect } from 'react-router-dom';
 
 
 export const Checkout = () => {
-    const { cart, totalPrice } = useContext(contextCart);
+    const { cart, totalPrice, removeAllToCart } = useContext(contextCart);
     const [id, setId] = useState("");    
 
     const [buyer, setbuyer] = useState({
@@ -30,16 +31,18 @@ export const Checkout = () => {
             totalPrice,
             date,
         }
-        pagar(Order);
+        toPay(Order);
     };
 
-    const pagar = (myOrder) => {
-        
+    const toPay = (myOrder) => {
         const db = getFirestore();
         const orders = collection(db, "orders");
         addDoc(orders, myOrder).then(({ id }) => {
         setId(id);
         updateStock(myOrder);
+        alert("TU NUMERO DE ORDEN DE COMPRA ES: " + id);
+        removeAllToCart();
+        window.location.href = '/';
         });
     }
 
@@ -58,7 +61,6 @@ export const Checkout = () => {
                 });
 
         })
-        
     }
 
     return (
@@ -113,7 +115,7 @@ export const Checkout = () => {
             />
             <>
                 <div style={{display: 'flex', alignitems: 'center', justifyContent: 'center' }}>
-                    {id && ("tu orden es: " + id)}
+                    {id && alert("tu orden es: " + id) }
                 </div>
                 <Button
                 color="secondary"

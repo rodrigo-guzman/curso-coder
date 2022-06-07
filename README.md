@@ -21,4 +21,5 @@ Finally i used GitHub to version the progress of the proyect
 which is located at the following url https://github.com/rodrigo-guzman/curso-coder
 
 ## GIF Demo
-![](demo-proyect-coderhouse-ReactJs-Ecommerce.gif)
+
+![](ReactEcommerceDEMOGIF.gif)

@@ -1,29 +1,22 @@
 /*//@ts-check*/
-import {useState, useContext, useEffect} from 'react';
+import { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container, Grid, TextField } from "@mui/material";
 import { red } from '@mui/material/colors';
 import { Box } from "@mui/system";
 import { contextCart } from '../contexts/ContextCart';
-import Stack from '@mui/material/Stack';
-import MuiAlert from '@mui/material/Alert';
 import React from 'react';
-import Snackbar from '@mui/material/Snackbar';
-
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import { NavLink } from 'react-router-dom';
 
 
 function ItemCount({valorInicial, stock, item}){
-    const {addToCart, cart } = useContext(contextCart);
+    const { addToCart } = useContext(contextCart);
     const color = red[500];
     const [quantity, setQuantity] = useState(valorInicial);
-    const {id, title, price} = item;
+    const { id, title, price } = item;
     const [byEnd, setByEnd ] = useState(false);
-    const [ added, setAdded] = useState(false);
+    const [added] = useState(false);
 
 
     const agregar = ()=>{
@@ -40,14 +33,6 @@ function ItemCount({valorInicial, stock, item}){
       price: price, 
       quantity: quantity
     }
-
- useEffect(() => {
-  cart.map(item => {
-    if(item.id === id){
-      setAdded(true);
-    }
-  })
- }, [])
  
 
     return <>
@@ -67,7 +52,8 @@ function ItemCount({valorInicial, stock, item}){
           
           <Grid item xs={12} md={12}>
           <Container sx={{justifyContent: 'center', alignContent: 'center', display: { xs: 'flex', md: 'flex'} }}>
-          
+          {!byEnd ? 
+          <>
           <Button
               disabled={ quantity === 0 || byEnd}
               variant='contained'
@@ -80,6 +66,21 @@ function ItemCount({valorInicial, stock, item}){
           >
               Agregar al carrito
           </Button>
+          </>
+          :
+          <>
+          <NavLink to={`/cart`} style={{textDecoration: 'none'}}>
+            <Button
+                variant='contained'
+                sx={{ display: 'flex', backgroundColor: color}}  
+                size='small'
+            >
+                Finalizar Compra
+            </Button>
+          </NavLink>
+          </>  
+        }
+          
           </Container>
           </Grid>
           <Grid item xs={12} md={12}>

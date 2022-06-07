@@ -54,7 +54,7 @@ if (cart && cart.length>0){
 
 if (cart && cart.length>0){
     const initialValue = 0;
-    const sumWithInitial = cart.map((item) => parseInt(item.price)).reduce(
+    const sumWithInitial = cart.map((item) => parseInt(item.price * item.quantity)).reduce(
     (previousValue, currentValue) => previousValue + currentValue, initialValue);
     totalPrice = sumWithInitial;
 }
