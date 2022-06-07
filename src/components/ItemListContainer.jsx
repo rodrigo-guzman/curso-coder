@@ -34,25 +34,6 @@ export default function ItemListContainer({mensaje}){
             console.log('error al consultar productos', error)
         });  
 
-        /*setTimeout(() => {
-            if (categoryId){
-                fetch('https://api.mercadolibre.com/sites/MLA/search?q=' + categoryId)
-                .then((res) => {
-                    return res.json()
-                })
-                .then((res) => {
-                    setLoading(false);
-                    setProducts(res.results);
-                })
-                .catch((err) => {
-                    console.log('err', error);
-                    setError(err);
-                })
-            }
-            else{
-                setLoading(false);
-            }
-        }, 1500);*/
     },[categoryId, error]);
 
     return (

@@ -12,19 +12,6 @@ const ItemDetailContainer = () => {
     const [product, setProduct] = useState({});
     const db = getFirestore();
     const myDocumento = doc(db, 'products', idProduct);
-    /*const getItem = () => {
-        fetch('https://api.mercadolibre.com/items/'+idProduct)
-        .then((res) => {
-            return res.json()
-        })
-        .then((res) => {
-            setLoading(false);
-            setItem(res);
-        })
-        .catch((err) => {
-            setError(err);
-        })
-    }*/
 
     useEffect(() => {
         setLoading(true);
