@@ -17,7 +17,6 @@ export const Checkout = () => {
     const handleChange = (e) => {
         e.preventDefault();
 
-        console.log(e.target.name, e.target.value);
         setbuyer({ ...buyer, [e.target.name]: e.target.value });
     };
 
@@ -45,8 +44,6 @@ export const Checkout = () => {
     }
 
     const updateStock = (myOrder) => {
-        console.log('entro al updateStock');
-        console.log('myOrder ', myOrder )
         const db = getFirestore();
         myOrder.cart.map(item => {
             const productDoc = doc(db, "products", item.id);
@@ -55,7 +52,6 @@ export const Checkout = () => {
                 .then(producto=> {
                     selectProduct ={id: producto.id, ...producto.data()};
                     updateDoc(productDoc, {stock: selectProduct.stock - item.quantity})
-                    console.log('paso el updateDoc')
                 })
                 .catch((err) => {
                     console.log('error', err);

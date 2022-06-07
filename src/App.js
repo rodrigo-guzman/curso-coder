@@ -12,7 +12,7 @@ function App() {
       <>
       <ContextCartProvider>
         <BrowserRouter>
-        <NavBar name = {"ReactStore"}/>
+        <NavBar name = {"GuzmiStore"}/>
         <Routes>
           <Route path="/" element = {<ItemListContainer mensaje = {"CATALOGO"}/>}></Route>
           <Route path="/category/:categoryId" element = {<ItemListContainer mensaje = {"CATALOGO"}/>}></Route>
